@@ -32,7 +32,7 @@ def makeWebhookResult(req):
         return {}
     result = req.get("result")
     parameters = result.get("parameters")
-    zone = parameters.get("ask.question")
+    zone = parameters.get("country")
 
     cost = {'Afghanistan':100, 'United States':200, 'Bolivia':300, 'Panama':400, 'France':500, 'Iraq':3589, 'Germany':789}
 
