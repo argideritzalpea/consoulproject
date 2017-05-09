@@ -30,8 +30,6 @@ def webhook():
     return r
 
 def makeWebhookResult(req):
-    client = MongoClient('mongodb://RadMajik:YUVBnmio5%@cluster0-shard-00-00-b4hqz.mongodb.net:27017,cluster0-shard-00-01-b4hqz.mongodb.net:27017,cluster0-shard-00-02-b4hqz.mongodb.net:27017/chatbot?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin')
-    col = client.chatbot.factbook
     
     if req.get("result").get("action") != "ask.question":
         return {}
@@ -39,7 +37,6 @@ def makeWebhookResult(req):
     parameters = result.get("parameters")
     zone = parameters.get("country")
 
-    cost = col.distinct(zone)[0]['airports.txt']
 
     speech = "The cost of shipping to " + zone + " is " + "5" + " euros."
 
