@@ -41,7 +41,7 @@ def makeWebhookResult(req):
 
     cost = col.distinct(zone)[0]['airports.txt']
 
-    speech = "The cost of shipping to " + zone + " is " + cost + " euros."
+    speech = "The cost of shipping to " + zone + " is " + "5" + " euros."
 
     print("Response:")
     print(speech)
