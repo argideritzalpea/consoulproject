@@ -7,10 +7,13 @@ import os
 from flask import Flask
 from flask import request
 from flask import make_response
+from pymongo import MongoClient
 
 # Flask app should start in global layout
 app = Flask(__name__)
 
+client = MongoClient('mongodb://***REMOVED***:***REMOVED***@cluster0-shard-00-00-b4hqz.mongodb.net:27017,cluster0-shard-00-01-b4hqz.mongodb.net:27017,cluster0-shard-00-02-b4hqz.mongodb.net:27017/chatbot?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin')
+col = client.chatbot.factbook
 
 @app.route('/webhook', methods=['POST'])
 def webhook():
@@ -34,9 +37,9 @@ def makeWebhookResult(req):
     parameters = result.get("parameters")
     zone = parameters.get("country")
 
-    cost = {'Afghanistan':100, 'United States':200, 'Bolivia':300, 'Panama':400, 'France':500, 'Iraq':3589, 'Germany':789}
+    cost = col.distinct(zone)[0]['airports.txt']
 
-    speech = "The cost of shipping to " + zone + " is " + str(cost[zone]) + " euros."
+    speech = "The cost of shipping to " + zone + " is " + cost + " euros."
 
     print("Response:")
     print(speech)
