@@ -12,15 +12,10 @@ from pymongo import MongoClient
 # Flask app should start in global layout
 app = Flask(__name__)
 
+@app.route('/')
 def connect():
     client = MongoClient('mongodb://***REMOVED***:***REMOVED***@cluster0-shard-00-00-b4hqz.mongodb.net:27017,cluster0-shard-00-01-b4hqz.mongodb.net:27017,cluster0-shard-00-02-b4hqz.mongodb.net:27017/chatbot?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin')
     return client
-
-@app.route('/')
-def printing():
-    client = connect()
-    db = client.chatbot.factbook
-    return db
 
 
 @app.route('/webhook', methods=['POST'])
