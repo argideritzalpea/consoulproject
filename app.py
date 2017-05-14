@@ -14,6 +14,7 @@ app = Flask(__name__)
 client = MongoClient('mongodb://***REMOVED***:***REMOVED***@cluster0-shard-00-00-b4hqz.mongodb.net:27017,cluster0-shard-00-01-b4hqz.mongodb.net:27017,cluster0-shard-00-02-b4hqz.mongodb.net:27017/chatbot?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin')
 
 col = client.chatbot.factbook
+print(col)
 
 
 @app.route('/webhook', methods=['POST'])
