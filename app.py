@@ -14,7 +14,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def connect():
-    client = MongoClient('mongodb://RadMajik:YUVBnmio5%@ds149481.mlab.com:49481/heroku_bbzbf3l3')
+    client = pymongo.MongoClient('mongodb://RadMajik:YUVBnmio5%@ds149481.mlab.com:49481/heroku_bbzbf3l3')
     return client
 
 
