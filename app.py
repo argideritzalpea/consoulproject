@@ -11,11 +11,12 @@ from pymongo import MongoClient
 
 # Flask app should start in global layout
 app = Flask(__name__)
+app.config['MONGO_URI'] = environ.get('MONGODB_URI', "mongodb://RadMajik:YUVBnmio5%@ds149481.mlab.com:49481/heroku_bbzbf3l3")
+client = PyMongo(app)
 
 @app.route('/')
 def connect():
-    client = pymongo.MongoClient('mongodb://RadMajik:YUVBnmio5%@ds149481.mlab.com:49481/heroku_bbzbf3l3')
-    return client
+    return client.factbook.find()
 
 
 @app.route('/webhook', methods=['POST'])
