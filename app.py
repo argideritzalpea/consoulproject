@@ -7,7 +7,7 @@ import os
 from flask import Flask
 from flask import request
 from flask import make_response
-from pymongo import MongoClient
+from flask_pymongo import PyMongo
 
 # Flask app should start in global layout
 app = Flask(__name__)
