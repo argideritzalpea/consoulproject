@@ -7,6 +7,7 @@ import os
 from flask import Flask
 from flask import request
 from flask import make_response
+from flask import jsonify
 from pymongo import MongoClient
 from os import environ
 
@@ -18,7 +19,7 @@ db = client.get_default_database()
 
 @app.route('/')
 def connect():
-    return db.collection_names()
+    return jsonify(db.collection_names())
 
 @app.route('/webhook', methods=['POST'])
 def webhook():
