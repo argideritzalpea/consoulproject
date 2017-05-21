@@ -14,8 +14,8 @@ from os import environ
 app = Flask(__name__)
 
 connection = pymongo.MongoClient('mongodb://RadMajik:YUVBnmio5%@ds149481.mlab.com:49481/heroku_bbzbf3l3', 49481)
-db = connection[heroku_bbzbf3l3]
-db.authenticate(RadMajik, YUVBnmio5%)
+db = connection['heroku_bbzbf3l3']
+db.authenticate('RadMajik', 'YUVBnmio5%')
 
 @app.route('/')
 def connect():
