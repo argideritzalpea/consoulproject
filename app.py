@@ -7,7 +7,6 @@ import os
 from flask import Flask
 from flask import request
 from flask import make_response
-from flask_pymongo import PyMongo
 from pymongo import MongoClient
 from os import environ
 
