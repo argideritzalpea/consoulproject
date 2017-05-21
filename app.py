@@ -13,8 +13,8 @@ from os import environ
 # Flask app should start in global layout
 app = Flask(__name__)
 
-connection = MongoClient('mongodb://***REMOVED***:***REMOVED***@ds149481.mlab.com:49481/heroku_bbzbf3l3')
-db = connection['heroku_bbzbf3l3']
+client = MongoClient('mongodb://***REMOVED***:***REMOVED***@ds149481.mlab.com:49481/heroku_bbzbf3l3')
+db = client.get_default_database()
 db.authenticate('***REMOVED***', '***REMOVED***')
 
 @app.route('/')
