@@ -14,8 +14,8 @@ app = Flask(__name__)
 
 @app.route('/')
 def connect():
-    client = MongoClient('mongodb://RadMajik:YUVBnmio5%@cluster0-shard-00-00-b4hqz.mongodb.net:27017,cluster0-shard-00-01-b4hqz.mongodb.net:27017,cluster0-shard-00-02-b4hqz.mongodb.net:27017/chatbot?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin')
-    return client.test
+    client = MongoClient('mongodb://RadMajik:YUVBnmio5%@ds149481.mlab.com:49481/heroku_bbzbf3l3')
+    return client
 
 
 @app.route('/webhook', methods=['POST'])
