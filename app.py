@@ -8,6 +8,7 @@ from flask import Flask
 from flask import request
 from flask import make_response
 from flask_pymongo import PyMongo
+from os import environ
 
 # Flask app should start in global layout
 app = Flask(__name__)
