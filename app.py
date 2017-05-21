@@ -13,11 +13,11 @@ from os import environ
 # Flask app should start in global layout
 app = Flask(__name__)
 app.config['MONGO_URI'] = environ.get('MONGODB_URI', "mongodb://RadMajik:YUVBnmio5%@ds149481.mlab.com:49481/heroku_bbzbf3l3")
-client = PyMongo(app)
+mongo = PyMongo(app)
 
 @app.route('/')
 def connect():
-    return client.find()
+    return mongo.heroku_bbzbf3l3.factbook.find()
 
 @app.route('/webhook', methods=['POST'])
 def webhook():
