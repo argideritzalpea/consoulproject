@@ -13,7 +13,7 @@ from os import environ
 # Flask app should start in global layout
 app = Flask(__name__)
 
-connection = pymongo.MongoClient('mongodb://***REMOVED***:***REMOVED***@ds149481.mlab.com:49481/heroku_bbzbf3l3', 49481)
+connection = MongoClient('mongodb://***REMOVED***:***REMOVED***@ds149481.mlab.com:49481/heroku_bbzbf3l3', 49481)
 db = connection['heroku_bbzbf3l3']
 db.authenticate('***REMOVED***', '***REMOVED***')
 
