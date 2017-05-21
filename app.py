@@ -15,11 +15,10 @@ app = Flask(__name__)
 
 client = MongoClient('mongodb://***REMOVED***:***REMOVED***@ds149481.mlab.com:49481/heroku_bbzbf3l3')
 db = client.get_default_database()
-db.authenticate('***REMOVED***', '***REMOVED***')
 
 @app.route('/')
 def connect():
-    return db.factbook.findOne()
+    return db.collection_names()
 
 @app.route('/webhook', methods=['POST'])
 def webhook():
