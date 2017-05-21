@@ -15,6 +15,9 @@ app = Flask(__name__)
 app.config['MONGO_URI'] = environ.get('MONGODB_URI', "mongodb://***REMOVED***:***REMOVED***@ds149481.mlab.com:49481/heroku_bbzbf3l3")
 client = PyMongo(app)
 
+@app.route('/')
+def connect():
+    return client.factbook.find()
 
 @app.route('/webhook', methods=['POST'])
 def webhook():
