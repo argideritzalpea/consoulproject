@@ -17,7 +17,7 @@ mongo = PyMongo(app)
 
 @app.route('/')
 def connect():
-    return mongo.heroku_bbzbf3l3.factbook.find()
+    return mongo.db.factbook.find()
 
 @app.route('/webhook', methods=['POST'])
 def webhook():
