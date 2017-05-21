@@ -20,6 +20,7 @@ find = db.factbook.find()
 
 @app.route('/')
 def connect():
+    print db.collection_names()
     return jsonify(find)
 
 @app.route('/webhook', methods=['POST'])
