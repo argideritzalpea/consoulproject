@@ -20,7 +20,6 @@ find = db.factbook.find()
 
 @app.route('/')
 def connect():
-    print db.collection_names()
     return jsonify(find)
 
 @app.route('/webhook', methods=['POST'])
@@ -46,7 +45,7 @@ def makeWebhookResult(req):
     parameters = result.get("parameters")
     zone = parameters.get("country")
 
-    speech = "The cost of shipping to " + zone + " is " + "5" + " euros."
+    speech = "The cost of shipping to " + zone + " is " + db.factbook.distinct("Afghanistan")[0]["accountBalance.txt"] + " euros."
 
     print("Response:")
     print(speech)
