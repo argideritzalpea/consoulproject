@@ -45,7 +45,7 @@ def makeWebhookResult(req):
     parameters = result.get("parameters")
     zone = parameters.get("country")
 
-    speech = "The cost of shipping to " + zone + " is " + db.factbook.distinct("Afghanistan")[0]["accountBalance.txt"] + " euros."
+    speech = "The cost of shipping to " + zone + " is " + db.factbook.distinct(zone)[0]["accountBalance.txt"] + " euros."
 
     print("Response:")
     print(speech)
