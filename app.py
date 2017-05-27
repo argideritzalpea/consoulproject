@@ -15,7 +15,7 @@ from os import environ
 app = Flask(__name__)
 
 client = MongoClient('mongodb://RadMajik:YUVBnmio5%@ds149481.mlab.com:49481/heroku_bbzbf3l3')
-db = client.factbook
+db = client.get_default_database()
 find = db.factbook.find()
 
 @app.route('/')
