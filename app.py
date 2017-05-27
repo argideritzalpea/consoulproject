@@ -40,8 +40,11 @@ def makeWebhookResult(req):
     parameters = result.get("parameters")
     zone = parameters.get("country")
     characteristic = parameters.get("attribute")
-
-    speech = "The " + str(db.codebook.distinct(characteristic)[0]["Entity"]) + " of " + zone + " " + str(db.codebook.distinct(characteristic)[0]["Construction"]) + " " + str(db.factbook.distinct(zone)[0][characteristic]) + " " + str(db.codebook.distinct(characteristic)[0]["Units"])
+    
+    if str(db.codebook.distinct(characteristic)[0]["Construction"]) == "in":
+        speech = "The " + str(db.codebook.distinct(characteristic)[0]["Entity"]) + " in " + zone + " is " + str(db.factbook.distinct(zone)[0][characteristic]) + " " + str(db.codebook.distinct(characteristic)[0]["Units"])
+    else:
+        speech = "The " + str(db.codebook.distinct(characteristic)[0]["Entity"]) + " of " + zone + " " + str(db.codebook.distinct(characteristic)[0]["Construction"]) + " " + str(db.factbook.distinct(zone)[0][characteristic]) + " " + str(db.codebook.distinct(characteristic)[0]["Units"])
     
     print("Response:")
     print(speech)
