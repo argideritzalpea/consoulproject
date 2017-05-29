@@ -50,14 +50,14 @@ def makeWebhookResult(req):
         parameters = result.get("parameters")
         
         country = parameters.get("country")
-        country = re.sub('$', '', country)
+        countryfact = re.sub('$', '', db.factbook.distinct(country)[0][characteristic])
 
         country2 = parameters.get("country2")
-        country2 = re.sub('$', '', country2)
+        country2fact = re.sub('$', '', db.factbook.distinct(country2)[0][characteristic])
 
         characteristic = parameters.get("attribute")
         
-        speech = "The difference of " + country + "'s " + characteristic + " and that of " + country2 + " is " + str(float((db.factbook.distinct(country)[0][characteristic])) - float((db.factbook.distinct(country2)[0][characteristic]))) + " " + str(db.codebook.distinct(characteristic)[0]["Units"])
+        speech = "The difference of " + country + "'s " + characteristic + " and that of " + country2 + " is " + str(float(countryfact) - float(country2fact)) + " " + str(db.codebook.distinct(characteristic)[0]["Units"])
     else:
         return {}
     
