@@ -4,6 +4,7 @@
 import urllib
 import json
 import os
+import re
 
 from flask import Flask
 from flask import request
@@ -47,8 +48,13 @@ def makeWebhookResult(req):
     elif req.get("result").get("action") == "compare":
         result = req.get("result")
         parameters = result.get("parameters")
+        
         country = parameters.get("country")
+        country = re.sub('$', '', country)
+
         country2 = parameters.get("country2")
+        country2 = re.sub('$', '', country2)
+
         characteristic = parameters.get("attribute")
         
         speech = "The difference of " + country + "'s " + characteristic + " and that of " + country2 + " is " + str(float((db.factbook.distinct(country)[0][characteristic])) - float((db.factbook.distinct(country2)[0][characteristic]))) + " " + str(db.codebook.distinct(characteristic)[0]["Units"])
