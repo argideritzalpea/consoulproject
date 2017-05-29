@@ -35,18 +35,25 @@ def webhook():
 
 def makeWebhookResult(req):
     
-    if req.get("result").get("action") != "ask.question":
-        return {}
-    result = req.get("result")
-    parameters = result.get("parameters")
-    zone = parameters.get("country")
-    characteristic = parameters.get("attribute")
-    
-    if str(db.codebook.distinct(characteristic)[0]["Construction"]) == "in":
-        speech = "The " + str(db.codebook.distinct(characteristic)[0]["Entity"]) + " in " + zone + " is " + str(db.factbook.distinct(zone)[0][characteristic]) + " " + str(db.codebook.distinct(characteristic)[0]["Units"])
+    if req.get("result").get("action") == "ask.question":
+        result = req.get("result")
+        parameters = result.get("parameters")
+        zone = parameters.get("country")
+        characteristic = parameters.get("attribute")
+        if str(db.codebook.distinct(characteristic)[0]["Construction"]) == "in":
+            speech = "The " + str(db.codebook.distinct(characteristic)[0]["Entity"]) + " in " + zone + " is " + str(db.factbook.distinct(zone)[0][characteristic]) + " " + str(db.codebook.distinct(characteristic)[0]["Units"])
+        else:
+            speech = "The " + str(db.codebook.distinct(characteristic)[0]["Entity"]) + " of " + zone + " " + str(db.codebook.distinct(characteristic)[0]["Construction"]) + " " + str(db.factbook.distinct(zone)[0][characteristic]) + " " + str(db.codebook.distinct(characteristic)[0]["Units"])
+    elif req.get("result").get("action") == "compare":
+        result = req.get("result")
+        parameters = result.get("parameters")
+        country = parameters.get("country")
+        country2 = parameters.get("country2")
+        characteristic = parameters.get("attribute")
+        
+        speech = "The difference of " + country + "'s " + characteristic + " and that of " + country2 + " is " + str((db.factbook.distinct(country)[0][characteristic]) - (db.factbook.distinct(country2)[0][characteristic])) + " " + str(db.codebook.distinct(characteristic)[0]["Units"])
     else:
-        speech = "The " + str(db.codebook.distinct(characteristic)[0]["Entity"]) + " of " + zone + " " + str(db.codebook.distinct(characteristic)[0]["Construction"]) + " " + str(db.factbook.distinct(zone)[0][characteristic]) + " " + str(db.codebook.distinct(characteristic)[0]["Units"])
-    
+        return {}
     print("Response:")
     print(speech)
 
