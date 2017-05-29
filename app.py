@@ -51,7 +51,8 @@ def makeWebhookResult(req):
         country2 = parameters.get("country2")
         characteristic = parameters.get("attribute")
         
-        speech = "The difference of " + country + "'s " + characteristic + " and that of " + country2 + " is " + str((db.factbook.distinct(country)[0][characteristic]) - (db.factbook.distinct(country2)[0][characteristic])) + " " + str(db.codebook.distinct(characteristic)[0]["Units"])
+        #"The difference of " + country + "'s " + characteristic + " and that of " + country2 + " is " + str((db.factbook.distinct(country)[0][characteristic]) - (db.factbook.distinct(country2)[0][characteristic])) + " " + str(db.codebook.distinct(characteristic)[0]["Units"])
+        speech = "Hellooooo"
     else:
         return {}
     print("Response:")
