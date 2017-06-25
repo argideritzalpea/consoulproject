@@ -45,6 +45,12 @@ def makeWebhookResult(req):
             speech = "The " + str(db.codebook.distinct(characteristic)[0]["Entity"]) + " in " + zone + " is " + str(db.factbook.distinct(zone)[0][characteristic]) + " " + str(db.codebook.distinct(characteristic)[0]["Units"])
         else:
             speech = "The " + str(db.codebook.distinct(characteristic)[0]["Entity"]) + " of " + zone + " " + str(db.codebook.distinct(characteristic)[0]["Construction"]) + " " + str(db.factbook.distinct(zone)[0][characteristic]) + " " + str(db.codebook.distinct(characteristic)[0]["Units"])
+    elif req.get("result").get("action") == "bilateral":
+        result = req.get("result")
+        parameters = result.get("parameters")
+        zone = parameters.get("countryBI")
+        bilateralcat = parameters.get("bilateralcat")
+        speech = str(db.bilateralcollection.distinct(zone)[0][bilateralcat])
     elif req.get("result").get("action") == "compare":
         result = req.get("result")
         parameters = result.get("parameters")
