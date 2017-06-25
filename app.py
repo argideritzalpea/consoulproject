@@ -54,7 +54,6 @@ def makeWebhookResult(req):
     elif req.get("result").get("action") == "compare":
         result = req.get("result")
         parameters = result.get("parameters")
-        
         characteristic = parameters.get("attribute")        
         
         country = parameters.get("country")
