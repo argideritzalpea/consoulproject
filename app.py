@@ -51,6 +51,7 @@ def makeWebhookResult(req):
         zone = parameters.get("countryBI")
         bilateralcat = parameters.get("bilateralcat")
         speech = str(db.bilateralcollection.distinct(zone)[0][bilateralcat])
+        testvar = bilateralcat
     elif req.get("result").get("action") == "compare":
         result = req.get("result")
         parameters = result.get("parameters")
@@ -68,6 +69,7 @@ def makeWebhookResult(req):
     
     print("Response:")
     print(speech)
+    print(testvar)
 
     return {
         "speech": speech,
