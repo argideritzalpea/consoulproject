@@ -42,16 +42,18 @@ def makeWebhookResult(req):
         zone = parameters.get("country")
         characteristic = parameters.get("attribute")
         if str(db.codebook.distinct(characteristic)[0]["Construction"]) == "in":
-            speech = "The " + str(db.codebook.distinct(characteristic)[0]["Entity"]) + " in " + zone + " is " + str(db.factbook.distinct(zone)[0][characteristic]) + " " + str(db.codebook.distinct(characteristic)[0]["Units"])
+            #speech = "The " + str(db.codebook.distinct(characteristic)[0]["Entity"]) + " in " + zone + " is " + str(db.factbook.distinct(zone)[0][characteristic]) + " " + str(db.codebook.distinct(characteristic)[0]["Units"])
+            speech = db.codebook.distinct(characteristic)
         else:
-            speech = "The " + str(db.codebook.distinct(characteristic)[0]["Entity"]) + " of " + zone + " " + str(db.codebook.distinct(characteristic)[0]["Construction"]) + " " + str(db.factbook.distinct(zone)[0][characteristic]) + " " + str(db.codebook.distinct(characteristic)[0]["Units"])
-    
+            #speech = "The " + str(db.codebook.distinct(characteristic)[0]["Entity"]) + " of " + zone + " " + str(db.codebook.distinct(characteristic)[0]["Construction"]) + " " + str(db.factbook.distinct(zone)[0][characteristic]) + " " + str(db.codebook.distinct(characteristic)[0]["Units"])
+            speech = db.codebook.distinct(characteristic)
+            
     elif req.get("result").get("action") == "bilateral":
         result = req.get("result")
         parameters = result.get("parameters")
         countryBI = parameters.get("countryBI")
         bilateralcat = parameters.get("bilateralcat")
-        speech = db.bilateralcollection.find()
+        speech = db.bilateralcollection.distinct(bilateralcat)[0][countryBI]
     
     elif req.get("result").get("action") == "compare":
         result = req.get("result")
