@@ -16,7 +16,7 @@ from os import environ
 # Flask app should start in global layout
 app = Flask(__name__)
 
-client = MongoClient('mongodb://***REMOVED***:***REMOVED***@ds149481.mlab.com:49481/heroku_bbzbf3l3')
+client = MongoClient('')
 db = client.get_default_database()
 
 @app.route('/webhook', methods=['POST'])
